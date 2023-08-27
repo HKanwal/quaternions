@@ -11,7 +11,12 @@ function App() {
 
         <mesh position={[0, 0, 0]}>
           <sphereGeometry args={[1, 64, 32]} />
-          <meshBasicMaterial color="black" wireframe={true} />
+          <meshBasicMaterial color="black" wireframe />
+        </mesh>
+
+        <mesh position={[0, 0, 0]}>
+          <sphereGeometry args={[1, 64, 32]} />
+          <meshBasicMaterial color="red" />
         </mesh>
 
         <OrbitControls />
