@@ -1,5 +1,6 @@
-import './App.css'
-import { Canvas } from '@react-three/fiber'
+import { OrbitControls } from "@react-three/drei";
+import "./App.css";
+import { Canvas } from "@react-three/fiber";
 
 function App() {
   return (
@@ -12,9 +13,11 @@ function App() {
           <sphereGeometry args={[1, 64, 32]} />
           <meshBasicMaterial color="black" wireframe={true} />
         </mesh>
+
+        <OrbitControls />
       </Canvas>
     </div>
   );
 }
 
-export default App
+export default App;
