@@ -5,3 +5,12 @@
   width: 100vw;
   height: 100vh;
 }
+
+.label {
+  color: grey;
+  font-size: 32px;
+  font-family: "Computer Modern Serif", serif;
+  font-style: italic;
+  padding: 2px;
+  background-color: transparent;
+}

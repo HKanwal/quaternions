@@ -1,13 +1,7 @@
-import { useThree } from "@react-three/fiber";
-
 const WIDTH_SEGMENT = 24;
 const HEIGHT_SEGMENTS = 12;
 
 function WireframeSphere() {
-  useThree(({ camera }) => {
-    camera.position.set(5, 5, 5);
-  });
-
   return (
     <>
       <mesh position={[0, 0, 0]}>
