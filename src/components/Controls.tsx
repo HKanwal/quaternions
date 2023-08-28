@@ -1,7 +1,7 @@
 import { InputAdornment, TextField } from "@mui/material";
 import Styles from "../styles/Controls.module.css";
 import AddIcon from "@mui/icons-material/Add";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const numericDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
 
@@ -41,9 +41,57 @@ function formatNumber(str: string) {
     } else {
       return `${str}.00`;
     }
+  } else if (str.length > 4) {
+    return str.substring(0, 4);
   } else {
     return str;
   }
+}
+
+function unitVectorify(vector: [string, string, string], keepIndex: 0 | 1 | 2) {
+  let shifted = [];
+
+  if (keepIndex === 0) {
+    shifted = [vector[2], vector[keepIndex], vector[1]];
+  } else if (keepIndex === 1) {
+    shifted = [vector[0], vector[keepIndex], vector[2]];
+  } else {
+    shifted = [vector[1], vector[keepIndex], vector[0]];
+  }
+
+  shifted = shifted.map((str) => parseFloat(str));
+
+  const squared = shifted.map((num) => num ** 2);
+  const mode = squared[0] + squared[1] + squared[2] >= 1 ? "gain" : "drain";
+
+  if (mode === "gain") {
+    const remaining = 1 - squared[1];
+    if (squared[2] >= remaining) {
+      squared[2] = remaining;
+      squared[0] = 0;
+    } else {
+      squared[2] = 0;
+      squared[0] = 1 - squared[1] - squared[2];
+    }
+  } else {
+    squared[2] = 1 - squared[0] - squared[1];
+  }
+
+  shifted = squared.map((num) => Math.sqrt(num));
+
+  let unshifted = [];
+
+  if (keepIndex === 0) {
+    unshifted = [shifted[1], shifted[2], shifted[0]];
+  } else if (keepIndex === 1) {
+    unshifted = shifted;
+  } else {
+    unshifted = [shifted[2], shifted[0], shifted[1]];
+  }
+
+  unshifted = unshifted.map((num) => formatNumber(num.toFixed(2)));
+
+  return unshifted as [string, string, string];
 }
 
 type BasisVector = "i" | "j" | "k";
@@ -99,13 +147,13 @@ function Controls() {
 
     switch (basisVector) {
       case "i":
-        setAxis([formatNumber(val), axis[1], axis[2]]);
+        setAxis(unitVectorify(axis, 0));
         break;
       case "j":
-        setAxis([axis[0], formatNumber(val), axis[2]]);
+        setAxis(unitVectorify(axis, 1));
         break;
       case "k":
-        setAxis([axis[0], axis[1], formatNumber(val)]);
+        setAxis(unitVectorify(axis, 2));
         break;
     }
   };
