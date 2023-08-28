@@ -112,59 +112,63 @@ function Controls() {
 
   return (
     <div className={Styles.container}>
-      <TextField
-        type="text"
-        inputRef={iRef}
-        sx={{ m: 1, width: "9ch" }}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <i>i</i>
-            </InputAdornment>
-          ),
-        }}
-        size="small"
-        value={axis[0]}
-        onChange={(e) => handleChange("i", e.target.value)}
-        onClick={() => handleClick("i")}
-        onBlur={() => handleBlur("i")}
-      />
-      <AddIcon />
-      <TextField
-        type="text"
-        inputRef={jRef}
-        sx={{ m: 1, width: "9ch" }}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <i>j</i>
-            </InputAdornment>
-          ),
-        }}
-        size="small"
-        value={axis[1]}
-        onChange={(e) => handleChange("j", e.target.value)}
-        onClick={() => handleClick("j")}
-        onBlur={() => handleBlur("j")}
-      />
-      <AddIcon />
-      <TextField
-        type="text"
-        inputRef={kRef}
-        sx={{ m: 1, width: "9ch" }}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <i>k</i>
-            </InputAdornment>
-          ),
-        }}
-        size="small"
-        value={axis[2]}
-        onChange={(e) => handleChange("k", e.target.value)}
-        onClick={() => handleClick("k")}
-        onBlur={() => handleBlur("k")}
-      />
+      <span className={Styles["field-label"]}>Axis of Rotation</span>
+
+      <div className={Styles.axis}>
+        <TextField
+          type="text"
+          inputRef={iRef}
+          sx={{ m: 1, width: "9ch" }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <i>i</i>
+              </InputAdornment>
+            ),
+          }}
+          size="small"
+          value={axis[0]}
+          onChange={(e) => handleChange("i", e.target.value)}
+          onClick={() => handleClick("i")}
+          onBlur={() => handleBlur("i")}
+        />
+        <AddIcon />
+        <TextField
+          type="text"
+          inputRef={jRef}
+          sx={{ m: 1, width: "9ch" }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <i>j</i>
+              </InputAdornment>
+            ),
+          }}
+          size="small"
+          value={axis[1]}
+          onChange={(e) => handleChange("j", e.target.value)}
+          onClick={() => handleClick("j")}
+          onBlur={() => handleBlur("j")}
+        />
+        <AddIcon />
+        <TextField
+          type="text"
+          inputRef={kRef}
+          sx={{ m: 1, width: "9ch" }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <i>k</i>
+              </InputAdornment>
+            ),
+          }}
+          size="small"
+          value={axis[2]}
+          onChange={(e) => handleChange("k", e.target.value)}
+          onClick={() => handleClick("k")}
+          onBlur={() => handleBlur("k")}
+        />
+      </div>
     </div>
   );
 }
