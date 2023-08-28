@@ -110,10 +110,6 @@ function Controls() {
     }
   };
 
-  useEffect(() => {
-    console.log(axis);
-  }, [axis]);
-
   return (
     <div className={Styles.container}>
       <TextField
