@@ -16,6 +16,7 @@ function App() {
           <meshBasicMaterial color="grey" />
         </mesh>
 
+        <gridHelper />
         <OrbitControls />
       </Canvas>
     </div>
