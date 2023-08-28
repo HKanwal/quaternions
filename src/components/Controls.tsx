@@ -187,7 +187,7 @@ function Controls(props: ControlsProps) {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <i>i</i>
+                <i className={Styles.adornment}>i</i>
               </InputAdornment>
             ),
           }}
@@ -205,7 +205,7 @@ function Controls(props: ControlsProps) {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <i>j</i>
+                <span className={Styles.adornment}>j</span>
               </InputAdornment>
             ),
           }}
@@ -223,7 +223,7 @@ function Controls(props: ControlsProps) {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <i>k</i>
+                <i className={Styles.adornment}>k</i>
               </InputAdornment>
             ),
           }}
