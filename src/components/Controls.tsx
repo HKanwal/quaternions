@@ -3,11 +3,28 @@ import Styles from "../styles/Controls.module.css";
 import AddIcon from "@mui/icons-material/Add";
 import { useEffect, useState } from "react";
 
+const numericDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+
+function containsNonNumeric(str: string) {
+  let invalid = false;
+  const splitStr = str.split("");
+
+  for (const char of splitStr) {
+    if (!numericDigits.includes(char)) {
+      console.log(char);
+      invalid = true;
+    }
+  }
+
+  return invalid;
+}
+
 function Controls() {
   const [axis, setAxis] = useState<[string, string, string]>(["1.00", "0.00", "0.00"]);
 
   const handleChange = (basisVector: "i" | "j" | "k", newVal: string) => {
-    if (newVal.length > 4 || parseFloat(newVal) > 1) {
+    if (newVal.length > 4 || parseFloat(newVal) > 1 || containsNonNumeric(newVal)) {
+      console.log("invalid");
       return;
     }
 
@@ -31,7 +48,7 @@ function Controls() {
   return (
     <div className={Styles.container}>
       <TextField
-        type="number"
+        type="text"
         sx={{ m: 1, width: "9ch" }}
         InputProps={{
           endAdornment: (
@@ -46,7 +63,7 @@ function Controls() {
       />
       <AddIcon />
       <TextField
-        type="number"
+        type="text"
         sx={{ m: 1, width: "9ch" }}
         InputProps={{
           endAdornment: (
@@ -61,7 +78,7 @@ function Controls() {
       />
       <AddIcon />
       <TextField
-        type="number"
+        type="text"
         sx={{ m: 1, width: "9ch" }}
         InputProps={{
           endAdornment: (
