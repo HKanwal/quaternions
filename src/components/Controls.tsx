@@ -6,6 +6,7 @@ function Controls() {
   return (
     <div className={Styles.container}>
       <TextField
+        type="number"
         sx={{ m: 1, width: "8ch" }}
         InputProps={{
           endAdornment: (
@@ -18,6 +19,7 @@ function Controls() {
       />
       <AddIcon />
       <TextField
+        type="number"
         sx={{ m: 1, width: "8ch" }}
         InputProps={{
           endAdornment: (
@@ -30,6 +32,7 @@ function Controls() {
       />
       <AddIcon />
       <TextField
+        type="number"
         sx={{ m: 1, width: "8ch" }}
         InputProps={{
           endAdornment: (
