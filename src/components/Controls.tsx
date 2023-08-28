@@ -1,5 +1,6 @@
 import { FormControl, InputAdornment, OutlinedInput } from "@mui/material";
 import Styles from "../styles/Controls.module.css";
+import AddIcon from "@mui/icons-material/Add";
 
 function Controls() {
   return (
@@ -15,7 +16,7 @@ function Controls() {
           size="small"
         />
       </FormControl>
-      +
+      <AddIcon />
       <FormControl sx={{ m: 1, width: "8ch", display: "inline-block" }} variant="outlined">
         <OutlinedInput
           id="outlined-adornment-weight"
@@ -27,7 +28,7 @@ function Controls() {
           size="small"
         />
       </FormControl>
-      +
+      <AddIcon />
       <FormControl sx={{ m: 1, width: "8ch", display: "inline-block" }} variant="outlined">
         <OutlinedInput
           id="outlined-adornment-weight"
