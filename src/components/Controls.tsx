@@ -175,7 +175,9 @@ function Controls(props: ControlsProps) {
 
   return (
     <div className={Styles.container}>
-      <span className={Styles["field-label"]}>Axis of Rotation</span>
+      <span className={Styles["field-label"]}>
+        Axis of Rotation <span className={Styles["sub-label"]}>(Unit Vector)</span>
+      </span>
 
       <div className={Styles.axis}>
         <TextField

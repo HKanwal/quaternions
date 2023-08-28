@@ -17,3 +17,7 @@
 .field-label {
   margin-left: 8px;
 }
+
+.sub-label {
+  color: rgba(255, 255, 255, 0.5);
+}
