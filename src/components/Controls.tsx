@@ -1,13 +1,38 @@
 import { InputAdornment, TextField } from "@mui/material";
 import Styles from "../styles/Controls.module.css";
 import AddIcon from "@mui/icons-material/Add";
+import { useEffect, useState } from "react";
 
 function Controls() {
+  const [axis, setAxis] = useState<[string, string, string]>(["1.00", "0.00", "0.00"]);
+
+  const handleChange = (basisVector: "i" | "j" | "k", newVal: string) => {
+    if (newVal.length > 4 || parseFloat(newVal) > 1) {
+      return;
+    }
+
+    switch (basisVector) {
+      case "i":
+        setAxis([newVal, axis[1], axis[2]]);
+        break;
+      case "j":
+        setAxis([axis[0], newVal, axis[2]]);
+        break;
+      case "k":
+        setAxis([axis[0], axis[1], newVal]);
+        break;
+    }
+  };
+
+  useEffect(() => {
+    console.log(axis);
+  }, [axis]);
+
   return (
     <div className={Styles.container}>
       <TextField
         type="number"
-        sx={{ m: 1, width: "8ch" }}
+        sx={{ m: 1, width: "9ch" }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -16,11 +41,13 @@ function Controls() {
           ),
         }}
         size="small"
+        value={axis[0]}
+        onChange={(newVal) => handleChange("i", newVal.target.value)}
       />
       <AddIcon />
       <TextField
         type="number"
-        sx={{ m: 1, width: "8ch" }}
+        sx={{ m: 1, width: "9ch" }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -29,11 +56,13 @@ function Controls() {
           ),
         }}
         size="small"
+        value={axis[1]}
+        onChange={(newVal) => handleChange("j", newVal.target.value)}
       />
       <AddIcon />
       <TextField
         type="number"
-        sx={{ m: 1, width: "8ch" }}
+        sx={{ m: 1, width: "9ch" }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -42,6 +71,8 @@ function Controls() {
           ),
         }}
         size="small"
+        value={axis[2]}
+        onChange={(newVal) => handleChange("k", newVal.target.value)}
       />
     </div>
   );
