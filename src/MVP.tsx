@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { CSS2DRenderer, CSS2DObject } from "./lib/CSS2DRenderer";
 import { useEffect } from "react";
+import { OrbitControls } from "./lib/OrbitControls";
 
 function MVP() {
   useEffect(() => {
@@ -45,6 +46,10 @@ function MVP() {
     labelRenderer.domElement.style.position = "absolute";
     labelRenderer.domElement.style.top = "0px";
     document.body.appendChild(labelRenderer.domElement);
+
+    const controls = new OrbitControls(camera, labelRenderer.domElement);
+    controls.minDistance = 5;
+    controls.maxDistance = 100;
 
     function animate() {
       requestAnimationFrame(animate);
