@@ -24,7 +24,6 @@ function Controls() {
 
   const handleChange = (basisVector: "i" | "j" | "k", newVal: string) => {
     if (newVal.length > 4 || parseFloat(newVal) > 1 || containsNonNumeric(newVal)) {
-      console.log("invalid");
       return;
     }
 
