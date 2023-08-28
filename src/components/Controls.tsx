@@ -1,4 +1,4 @@
-import { FormControl, InputAdornment, OutlinedInput, TextField } from "@mui/material";
+import { InputAdornment, TextField } from "@mui/material";
 import Styles from "../styles/Controls.module.css";
 import AddIcon from "@mui/icons-material/Add";
 
