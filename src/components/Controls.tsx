@@ -3,6 +3,7 @@ import Styles from "../styles/Controls.module.css";
 import AddIcon from "@mui/icons-material/Add";
 import { useMemo, useRef, useState } from "react";
 import { Quaternion, Vector3 } from "three";
+import { MathUtils } from "three/src/math/MathUtils.js";
 
 const numericDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "-"];
 
@@ -115,6 +116,19 @@ function unitVectorify(vector: [string, string, string], keepIndex: 0 | 1 | 2) {
   return unshifted as [string, string, string];
 }
 
+// angle in degrees
+function createQuaternion(axis: [string, string, string], angle: string) {
+  const quaternion = new Quaternion();
+  const x = parseFloat(axis[0]);
+  const y = parseFloat(axis[1]);
+  const z = parseFloat(axis[2]);
+  const angleRad = MathUtils.degToRad(parseInt(angle));
+  quaternion.setFromAxisAngle(new Vector3(x, y, z), angleRad);
+  console.log(`(${x}, ${y}, ${z})`);
+  console.log(quaternion);
+  return quaternion;
+}
+
 type BasisVector = "i" | "j" | "k";
 
 interface ControlsProps {
@@ -128,17 +142,7 @@ function Controls(props: ControlsProps) {
   const jRef = useRef<HTMLInputElement>(null);
   const kRef = useRef<HTMLInputElement>(null);
   const angleRef = useRef<HTMLInputElement>(null);
-
-  const quaternion: Quaternion = useMemo(() => {
-    const quaternion = new Quaternion();
-    const x = parseFloat(axis[0]);
-    const y = parseFloat(axis[1]);
-    const z = parseFloat(axis[2]);
-    quaternion.setFromAxisAngle(new Vector3(x, y, z), parseInt(angle));
-    console.log(`(${x}, ${y}, ${z})`);
-    console.log(quaternion);
-    return quaternion;
-  }, [axis, angle]);
+  const [quaternion, setQuaternion] = useState<Quaternion>(() => createQuaternion(axis, angle));
 
   const handleChange = (basisVector: BasisVector, newVal: string) => {
     if (
@@ -218,6 +222,7 @@ function Controls(props: ControlsProps) {
     }
 
     setAxis(newAxis);
+    setQuaternion(createQuaternion(newAxis, angle));
     props.onDirectionChange &&
       props.onDirectionChange(newAxis.map((str) => parseFloat(str)) as [number, number, number]);
   };
@@ -242,13 +247,18 @@ function Controls(props: ControlsProps) {
       return;
     }
 
+    let angle: string = angleRef.current.value;
+
     if (angleRef.current.value === "" || angleRef.current.value === "-") {
-      setAngle("0");
+      angle = "0";
     } else if (parseInt(angleRef.current.value) === 0) {
-      setAngle("0");
+      angle = "0";
     } else if (parseInt(angleRef.current.value) > 360) {
-      setAngle("360");
+      angle = "360";
     }
+
+    setAngle(angle);
+    setQuaternion(createQuaternion(axis, angle));
   };
 
   return (
