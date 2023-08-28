@@ -32,7 +32,7 @@ function MVP() {
 
     const label = new CSS2DObject(div);
     label.position.set(1.5 * 1, 0, 0);
-    label.center.set(0, 1);
+    // label.center.set(0, 1);
     mesh.add(label);
 
     const renderer = new THREE.WebGLRenderer();
