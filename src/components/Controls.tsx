@@ -3,19 +3,26 @@ import Styles from "../styles/Controls.module.css";
 import AddIcon from "@mui/icons-material/Add";
 import { useRef, useState } from "react";
 
-const numericDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+const numericDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "-"];
 
-function containsNonNumeric(str: string) {
+function validNumberic(str: string) {
   let invalid = false;
   let numPeriods = 0;
+  let i = 0;
   const splitStr = str.split("");
 
   for (const char of splitStr) {
     if (!numericDigits.includes(char)) {
       invalid = true;
+      break;
+    } else if (char === "-" && i > 0) {
+      invalid = true;
+      break;
     } else if (char === ".") {
       numPeriods++;
     }
+
+    i++;
   }
 
   return numPeriods > 1 || invalid;
@@ -59,6 +66,7 @@ function unitVectorify(vector: [string, string, string], keepIndex: 0 | 1 | 2) {
   }
 
   shifted = shifted.map((str) => parseFloat(str));
+  const negative = [shifted[0] < 0, shifted[1] < 0, shifted[2] < 0];
 
   const squared = shifted.map((num) => num ** 2);
   const mode = squared[0] + squared[1] + squared[2] >= 1 ? "gain" : "drain";
@@ -76,6 +84,7 @@ function unitVectorify(vector: [string, string, string], keepIndex: 0 | 1 | 2) {
   }
 
   shifted = squared.map((num) => Math.sqrt(num));
+  shifted = shifted.map((num, i) => (negative[i] ? -1 * num : num));
 
   let unshifted = [];
 
@@ -107,7 +116,12 @@ function Controls(props: ControlsProps) {
   const angleRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (basisVector: BasisVector, newVal: string) => {
-    if (newVal.length > 4 || parseFloat(newVal) > 1 || containsNonNumeric(newVal)) {
+    if (
+      newVal.length > 4 ||
+      parseFloat(newVal) > 1 ||
+      parseFloat(newVal) < -1 ||
+      validNumberic(newVal)
+    ) {
       return;
     }
 
@@ -149,17 +163,31 @@ function Controls(props: ControlsProps) {
       return;
     }
 
-    let newAxis = ["0.00", "0.00", "0.00"] as [string, string, string];
+    let newAxis = [...axis] as [string, string, string];
+
+    if (val === "" || val === "-") {
+      switch (basisVector) {
+        case "i":
+          newAxis = ["0.00", axis[1], axis[2]];
+          break;
+        case "j":
+          newAxis = [axis[0], "0.00", axis[2]];
+          break;
+        case "k":
+          newAxis = [axis[0], axis[1], "0.00"];
+          break;
+      }
+    }
 
     switch (basisVector) {
       case "i":
-        newAxis = unitVectorify(axis, 0);
+        newAxis = unitVectorify(newAxis, 0);
         break;
       case "j":
-        newAxis = unitVectorify(axis, 1);
+        newAxis = unitVectorify(newAxis, 1);
         break;
       case "k":
-        newAxis = unitVectorify(axis, 2);
+        newAxis = unitVectorify(newAxis, 2);
         break;
     }
 
@@ -171,7 +199,7 @@ function Controls(props: ControlsProps) {
   const handleAngleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
 
-    if (val.length > 3 || containsNonNumeric(val) || val.includes(".")) {
+    if (val.length > 3 || validNumberic(val) || val.includes(".")) {
       return;
     }
 
