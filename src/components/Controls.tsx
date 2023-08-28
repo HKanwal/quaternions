@@ -96,7 +96,11 @@ function unitVectorify(vector: [string, string, string], keepIndex: 0 | 1 | 2) {
 
 type BasisVector = "i" | "j" | "k";
 
-function Controls() {
+interface ControlsProps {
+  onDirectionChange?: (newDir: [number, number, number]) => void;
+}
+
+function Controls(props: ControlsProps) {
   const [axis, setAxis] = useState<[string, string, string]>(["1.00", "0.00", "0.00"]);
   const iRef = useRef<HTMLInputElement>(null);
   const jRef = useRef<HTMLInputElement>(null);
@@ -145,17 +149,23 @@ function Controls() {
       return;
     }
 
+    let newAxis = ["0.00", "0.00", "0.00"] as [string, string, string];
+
     switch (basisVector) {
       case "i":
-        setAxis(unitVectorify(axis, 0));
+        newAxis = unitVectorify(axis, 0);
         break;
       case "j":
-        setAxis(unitVectorify(axis, 1));
+        newAxis = unitVectorify(axis, 1);
         break;
       case "k":
-        setAxis(unitVectorify(axis, 2));
+        newAxis = unitVectorify(axis, 2);
         break;
     }
+
+    setAxis(newAxis);
+    props.onDirectionChange &&
+      props.onDirectionChange(newAxis.map((str) => parseFloat(str)) as [number, number, number]);
   };
 
   return (

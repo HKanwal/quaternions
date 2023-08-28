@@ -2,14 +2,18 @@ import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import WireframeSphere from "./components/WireframeSphere";
 import Controls from "./components/Controls";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import * as THREE from "three";
 import { CSS2DObject, CSS2DRenderer } from "./lib/CSS2DRenderer";
 import { OrbitControls } from "./lib/OrbitControls";
 import { Line } from "@react-three/drei";
 import Grid from "./components/Grid";
 
+const origin = new THREE.Vector3(0, 0, 0);
+
 function App() {
+  const [axis, setAxis] = useState<THREE.Vector3>(new THREE.Vector3(1, 0, 0));
+
   const camera = useMemo(() => {
     const camera = new THREE.PerspectiveCamera(
       45,
@@ -74,6 +78,11 @@ function App() {
     animate();
   }, [camera, scene]);
 
+  const handleDirectionChange = (newDir: [number, number, number]) => {
+    const newVector = new THREE.Vector3(newDir[0], newDir[2], -newDir[1]);
+    setAxis(newVector);
+  };
+
   return (
     <>
       <div id="canvas-container">
@@ -87,10 +96,11 @@ function App() {
             color="white"
           />
           <Grid />
+          <arrowHelper args={[axis, origin, 3, "white"]} />
         </Canvas>
       </div>
 
-      <Controls />
+      <Controls onDirectionChange={handleDirectionChange} />
     </>
   );
 }
