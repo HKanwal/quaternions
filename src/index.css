@@ -3,6 +3,13 @@
 
 :root {
   font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  /** Color palette */
+  --white: #ececf1;
+  --light: #40414f;
+  --medium: #343541;
+  --medium-tinted: #3e3f4b;
+  --dark: #202123;
 }
 
 body {

@@ -76,14 +76,14 @@ function App() {
   return (
     <>
       <div id="canvas-container">
-        <Canvas camera={camera} scene={scene}>
+        <Canvas camera={camera} scene={scene} style={{ background: "#343541" }}>
           <WireframeSphere />
           <Line
             points={[
               [0, -4, 0],
               [0, 4, 0],
             ]}
-            color="black"
+            color="white"
           />
 
           <gridHelper args={[10, 10]} />
