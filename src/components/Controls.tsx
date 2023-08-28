@@ -1,7 +1,8 @@
 import { InputAdornment, TextField } from "@mui/material";
 import Styles from "../styles/Controls.module.css";
 import AddIcon from "@mui/icons-material/Add";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { Quaternion, Vector3 } from "three";
 
 const numericDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "-"];
 
@@ -127,6 +128,17 @@ function Controls(props: ControlsProps) {
   const jRef = useRef<HTMLInputElement>(null);
   const kRef = useRef<HTMLInputElement>(null);
   const angleRef = useRef<HTMLInputElement>(null);
+
+  const quaternion: Quaternion = useMemo(() => {
+    const quaternion = new Quaternion();
+    const x = parseFloat(axis[0]);
+    const y = parseFloat(axis[1]);
+    const z = parseFloat(axis[2]);
+    quaternion.setFromAxisAngle(new Vector3(x, y, z), parseInt(angle));
+    console.log(`(${x}, ${y}, ${z})`);
+    console.log(quaternion);
+    return quaternion;
+  }, [axis, angle]);
 
   const handleChange = (basisVector: BasisVector, newVal: string) => {
     if (
