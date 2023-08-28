@@ -35,7 +35,7 @@ function App() {
 
     const iLabel = new CSS2DObject(iDiv);
     iLabel.position.set(5.2, 0, 0);
-    // label.center.set(0, 1);
+    // iLabel.center.set(0, 1);
     scene.add(iLabel);
 
     const jDiv = document.createElement("div");
@@ -44,7 +44,6 @@ function App() {
 
     const jLabel = new CSS2DObject(jDiv);
     jLabel.position.set(0, 0, -5.2);
-    // label.center.set(0, 1);
     scene.add(jLabel);
 
     const labelRenderer = new CSS2DRenderer();
