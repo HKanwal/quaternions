@@ -9,7 +9,7 @@ function App() {
       <Canvas>
         <WireframeSphere />
 
-        <gridHelper />
+        <gridHelper args={[20, 20]} />
         <OrbitControls />
       </Canvas>
     </div>
