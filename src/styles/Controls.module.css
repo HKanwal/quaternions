@@ -3,7 +3,7 @@
   bottom: 0;
   right: 0;
   background-color: var(--dark);
-  padding: 18px 10px 10px 10px;
+  padding: 10px 10px 10px 10px;
   color: white;
   border-radius: 5px 0 0 0;
   z-index: 2;
@@ -22,7 +22,10 @@
 }
 
 .field-label {
+  display: block;
   margin-left: 8px;
+  margin-top: 14px;
+  margin-bottom: 2px;
 }
 
 .sub-label {

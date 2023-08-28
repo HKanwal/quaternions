@@ -12,7 +12,6 @@ function containsNonNumeric(str: string) {
 
   for (const char of splitStr) {
     if (!numericDigits.includes(char)) {
-      console.log(char);
       invalid = true;
     } else if (char === ".") {
       numPeriods++;
@@ -107,9 +106,11 @@ interface ControlsProps {
 
 function Controls(props: ControlsProps) {
   const [axis, setAxis] = useState<[string, string, string]>(["1.00", "0.00", "0.00"]);
+  const [angle, setAngle] = useState("0");
   const iRef = useRef<HTMLInputElement>(null);
   const jRef = useRef<HTMLInputElement>(null);
   const kRef = useRef<HTMLInputElement>(null);
+  const angleRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (basisVector: BasisVector, newVal: string) => {
     if (newVal.length > 4 || parseFloat(newVal) > 1 || containsNonNumeric(newVal)) {
@@ -173,6 +174,28 @@ function Controls(props: ControlsProps) {
       props.onDirectionChange(newAxis.map((str) => parseFloat(str)) as [number, number, number]);
   };
 
+  const handleAngleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+
+    if (val.length > 3 || containsNonNumeric(val) || val.includes(".")) {
+      return;
+    }
+
+    setAngle(e.target.value);
+  };
+
+  const handleAngleBlur = () => {
+    if (!angleRef.current) {
+      return;
+    }
+
+    if (angleRef.current.value.length === 0) {
+      setAngle("0");
+    } else if (parseInt(angleRef.current.value) > 360) {
+      setAngle("360");
+    }
+  };
+
   return (
     <div className={Styles.container}>
       <span className={Styles["field-label"]}>
@@ -234,6 +257,25 @@ function Controls(props: ControlsProps) {
           onBlur={() => handleBlur("k")}
         />
       </div>
+
+      <span className={Styles["field-label"]}>Angle of Rotation</span>
+
+      <TextField
+        type="text"
+        inputRef={angleRef}
+        sx={{ m: 1, width: "15ch" }}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <i className={Styles.adornment}>degrees</i>
+            </InputAdornment>
+          ),
+        }}
+        size="small"
+        value={angle}
+        onChange={handleAngleChange}
+        onBlur={handleAngleBlur}
+      />
     </div>
   );
 }
