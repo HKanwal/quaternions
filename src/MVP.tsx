@@ -24,7 +24,7 @@ function MVP() {
     scene.add(mesh);
 
     const div = document.createElement("div");
-    div.style.color = "white";
+    div.style.color = "grey";
     div.style.fontFamily = "sans-serif";
     div.style.padding = "2px";
     div.textContent = "Earth";
