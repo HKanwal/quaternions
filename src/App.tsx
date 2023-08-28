@@ -7,6 +7,7 @@ import * as THREE from "three";
 import { CSS2DObject, CSS2DRenderer } from "./lib/CSS2DRenderer";
 import { OrbitControls } from "./lib/OrbitControls";
 import { Line } from "@react-three/drei";
+import Grid from "./components/Grid";
 
 function App() {
   const camera = useMemo(() => {
@@ -85,8 +86,7 @@ function App() {
             ]}
             color="white"
           />
-
-          <gridHelper args={[10, 10]} />
+          <Grid />
         </Canvas>
       </div>
 
