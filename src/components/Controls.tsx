@@ -213,7 +213,12 @@ function Controls(props: ControlsProps) {
   const handleAngleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
 
-    if (val.length > 3 || validNumberic(val) || val.includes(".")) {
+    if (
+      (val.length > 3 && !val.includes("-")) ||
+      val.length > 4 ||
+      validNumberic(val) ||
+      val.includes(".")
+    ) {
       return;
     }
 
@@ -225,7 +230,9 @@ function Controls(props: ControlsProps) {
       return;
     }
 
-    if (angleRef.current.value.length === 0) {
+    if (angleRef.current.value === "" || angleRef.current.value === "-") {
+      setAngle("0");
+    } else if (parseInt(angleRef.current.value) === 0) {
       setAngle("0");
     } else if (parseInt(angleRef.current.value) > 360) {
       setAngle("360");
