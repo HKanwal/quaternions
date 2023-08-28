@@ -96,7 +96,7 @@ function App() {
             color="white"
           />
           <Grid />
-          <arrowHelper args={[axis, origin, 3, "white"]} />
+          <arrowHelper args={[axis, origin, 3, "#489fe5"]} />
         </Canvas>
       </div>
 
