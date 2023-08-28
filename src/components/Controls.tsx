@@ -42,7 +42,7 @@ function Controls() {
         }}
         size="small"
         value={axis[0]}
-        onChange={(newVal) => handleChange("i", newVal.target.value)}
+        onChange={(e) => handleChange("i", e.target.value)}
       />
       <AddIcon />
       <TextField
@@ -57,7 +57,7 @@ function Controls() {
         }}
         size="small"
         value={axis[1]}
-        onChange={(newVal) => handleChange("j", newVal.target.value)}
+        onChange={(e) => handleChange("j", e.target.value)}
       />
       <AddIcon />
       <TextField
@@ -72,7 +72,7 @@ function Controls() {
         }}
         size="small"
         value={axis[2]}
-        onChange={(newVal) => handleChange("k", newVal.target.value)}
+        onChange={(e) => handleChange("k", e.target.value)}
       />
     </div>
   );
