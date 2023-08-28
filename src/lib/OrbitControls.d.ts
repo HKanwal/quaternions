@@ -1,0 +1,45 @@
+import { Camera, EventDispatcher, Vector3, MOUSE, TOUCH } from "@types/three";
+
+export declare class OrbitControls extends EventDispatcher {
+  constructor(object: Camera, domElement: HTMLDivElement);
+  object: Camera;
+  domElement: HTMLDivElement;
+  enabled: boolean;
+  target: Vector3;
+  minDistance: number;
+  maxDistance: number;
+  minZoom: number;
+  maxZoom: number;
+  minPolarAngle: number;
+  maxPolarAngle: number;
+  minAzimuthAngle: number;
+  maxAzimuthAngle: number;
+  enableDamping: boolean;
+  dampingFactor: number;
+  enableZoom: boolean;
+  zoomSpeed: number;
+  enableRotate: boolean;
+  rotateSpeed: number;
+  enablePan: boolean;
+  panSpeed: number;
+  screenSpacePanning: boolean;
+  keyPanSpeed: number;
+  zoomToCursor: boolean;
+  autoRotate: boolean;
+  autoRotateSpeed: number;
+  keys: { LEFT: "ArrowLeft"; UP: "ArrowUp"; RIGHT: "ArrowRight"; BOTTOM: "ArrowDown" };
+  mouseButtons: { LEFT: MOUSE.ROTATE; MIDDLE: MOUSE.DOLLY; RIGHT: MOUSE.PAN };
+  touches: { ONE: TOUCH.ROTATE; TWO: TOUCH.DOLLY_PAN };
+  target0: Vector3;
+  position0: Vector3;
+  zoom0: Camera["zoom"];
+  _domElementKeyEvents: null;
+  getPolarAngle: () => number;
+  getAzimuthalAngle: () => number;
+  getDistance: () => number;
+  listenToKeyEvents: (domElement: HTMLDivElement) => void;
+  stopListenToKeyEvents: () => void;
+  saveState: () => void;
+  reset: () => void;
+  dispose: () => void;
+}
