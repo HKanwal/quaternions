@@ -29,6 +29,13 @@ function validNumberic(str: string) {
 }
 
 function formatNumber(str: string) {
+  const negative = parseFloat(str) < 0;
+  let retStr = "";
+
+  if (negative) {
+    str = str.substring(1);
+  }
+
   if (str.length < 4) {
     if (str.includes(".")) {
       let [pre, post] = str.split(".");
@@ -43,15 +50,21 @@ function formatNumber(str: string) {
         post += "0";
       }
 
-      return `${pre}.${post}`;
+      retStr = `${pre}.${post}`;
     } else {
-      return `${str}.00`;
+      retStr = `${str}.00`;
     }
   } else if (str.length > 4) {
-    return str.substring(0, 4);
+    retStr = str.substring(0, 4);
   } else {
-    return str;
+    retStr = str;
   }
+
+  if (negative) {
+    retStr = "-" + retStr;
+  }
+
+  return retStr;
 }
 
 function unitVectorify(vector: [string, string, string], keepIndex: 0 | 1 | 2) {
@@ -117,7 +130,8 @@ function Controls(props: ControlsProps) {
 
   const handleChange = (basisVector: BasisVector, newVal: string) => {
     if (
-      newVal.length > 4 ||
+      (newVal.length > 4 && !newVal.includes("-")) ||
+      newVal.length > 5 ||
       parseFloat(newVal) > 1 ||
       parseFloat(newVal) < -1 ||
       validNumberic(newVal)
