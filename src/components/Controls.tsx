@@ -1,7 +1,7 @@
 import { InputAdornment, TextField } from "@mui/material";
 import Styles from "../styles/Controls.module.css";
 import AddIcon from "@mui/icons-material/Add";
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Quaternion, Vector3 } from "three";
 import { MathUtils } from "three/src/math/MathUtils.js";
 
