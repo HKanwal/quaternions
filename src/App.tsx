@@ -6,6 +6,7 @@ import { useEffect, useMemo } from "react";
 import * as THREE from "three";
 import { CSS2DObject, CSS2DRenderer } from "./lib/CSS2DRenderer";
 import { OrbitControls } from "./lib/OrbitControls";
+import { Line } from "@react-three/drei";
 
 function App() {
   const camera = useMemo(() => {
@@ -46,6 +47,14 @@ function App() {
     jLabel.position.set(0, 0, -5.2);
     scene.add(jLabel);
 
+    const kDiv = document.createElement("div");
+    kDiv.className = "label";
+    kDiv.textContent = "k";
+
+    const kLabel = new CSS2DObject(kDiv);
+    kLabel.position.set(0, 4.2, 0);
+    scene.add(kLabel);
+
     const labelRenderer = new CSS2DRenderer();
     labelRenderer.setSize(window.innerWidth, window.innerHeight);
     labelRenderer.domElement.style.position = "absolute";
@@ -69,6 +78,13 @@ function App() {
       <div id="canvas-container">
         <Canvas camera={camera} scene={scene}>
           <WireframeSphere />
+          <Line
+            points={[
+              [0, -4, 0],
+              [0, 4, 0],
+            ]}
+            color="black"
+          />
 
           <gridHelper args={[10, 10]} />
         </Canvas>
