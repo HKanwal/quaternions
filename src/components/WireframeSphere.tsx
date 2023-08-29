@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-const WIDTH_SEGMENT = 24;
+const WIDTH_SEGMENTS = 24;
 const HEIGHT_SEGMENTS = 12;
 
 interface WireframeSphereProps {
@@ -22,12 +22,12 @@ function WireframeSphere({ quaternion }: WireframeSphereProps) {
   return (
     <>
       <mesh position={[0, 0, 0]} ref={wireframeRef}>
-        <sphereGeometry args={[1, WIDTH_SEGMENT, HEIGHT_SEGMENTS]} />
+        <sphereGeometry args={[1, WIDTH_SEGMENTS, HEIGHT_SEGMENTS]} />
         <meshBasicMaterial color="black" wireframe />
       </mesh>
 
       <mesh position={[0, 0, 0]} ref={sphereRef}>
-        <sphereGeometry args={[1, WIDTH_SEGMENT, HEIGHT_SEGMENTS]} />
+        <sphereGeometry args={[1, WIDTH_SEGMENTS, HEIGHT_SEGMENTS]} />
         <meshBasicMaterial color="grey" />
       </mesh>
     </>
