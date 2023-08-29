@@ -341,6 +341,34 @@ function Controls(props: ControlsProps) {
         onChange={handleAngleChange}
         onBlur={handleAngleBlur}
       />
+
+      <span className={Styles["field-label"]}>Quaternion</span>
+
+      {/* TODO: Fix this spaghetti styling and move to a new component */}
+      <div className={Styles.quaternion}>
+        <span className={Styles.cos}>cos</span>
+        <span className={Styles.angle}>
+          (<span className={Styles["user-angle"]}>{angle}</span>
+          <span className={Styles.division}>/</span>
+          <span className={Styles.two}>2</span>)
+        </span>
+        <AddIcon fontSize="small" />
+        <span className={Styles.sin}>sin</span>
+        <span className={Styles.angle}>
+          (<span className={Styles["user-angle"]}>{angle}</span>
+          <span className={Styles.division}>/</span>
+          <span className={Styles.two}>2</span>)
+        </span>
+        <span className={Styles.angle}>({axis[0]}</span>
+        <span className={Styles.var}>i</span>
+        <AddIcon fontSize="small" />
+        <span className={Styles.fs18}>{axis[1]}</span>
+        <span className={Styles.var}>j</span>
+        <AddIcon fontSize="small" />
+        <span className={Styles.fs18}>{axis[2]}</span>
+        <span className={Styles.var}>k</span>
+        <span className={Styles.angle}>)</span>
+      </div>
     </div>
   );
 }
