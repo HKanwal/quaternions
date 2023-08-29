@@ -86,17 +86,24 @@ function unitVectorify(vector: [string, string, string], keepIndex: 0 | 1 | 2) {
   const squared = shifted.map((num) => num ** 2);
   const mode = squared[0] + squared[1] + squared[2] >= 1 ? "gain" : "drain";
 
+  console.log(`Mode: ${mode}`);
+  console.log(`Squared 1: ${squared}`);
+
   if (mode === "gain") {
     const remaining = 1 - squared[1];
-    if (squared[2] >= remaining) {
+    if (squared[2] > remaining) {
+      console.log("Entered IF");
       squared[2] = remaining - squared[0];
     } else {
+      console.log("Entered ELSE");
       squared[2] = 0;
       squared[0] = 1 - squared[1] - squared[2];
     }
   } else {
     squared[2] = 1 - squared[0] - squared[1];
   }
+
+  console.log(`Squared 2: ${squared}`);
 
   shifted = squared.map((num) => Math.sqrt(num));
   shifted = shifted.map((num, i) => (negative[i] ? -1 * num : num));
@@ -124,8 +131,6 @@ function createQuaternion(axis: [string, string, string], angle: string) {
   const z = parseFloat(axis[2]);
   const angleRad = MathUtils.degToRad(parseInt(angle));
   quaternion.setFromAxisAngle(new Vector3(x, y, z), angleRad);
-  console.log(`(${x}, ${y}, ${z})`);
-  console.log(quaternion);
   return quaternion;
 }
 
