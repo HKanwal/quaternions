@@ -14,6 +14,7 @@ const origin = new THREE.Vector3(0, 0, 0);
 
 function App() {
   const [axis, setAxis] = useState<THREE.Vector3>(new THREE.Vector3(1, 0, 0));
+  const [quaternion, setQuaternion] = useState<THREE.Quaternion | null>(null);
 
   const camera = useMemo(() => {
     const camera = new THREE.PerspectiveCamera(
@@ -84,11 +85,15 @@ function App() {
     setAxis(newVector);
   };
 
+  const handleQuaternionChange = (quaternion: THREE.Quaternion) => {
+    setQuaternion(quaternion);
+  };
+
   return (
     <>
       <div id="canvas-container">
         <Canvas camera={camera} scene={scene} style={{ background: "#343541" }}>
-          <WireframeSphere />
+          <WireframeSphere quaternion={quaternion ?? undefined} />
           <Line
             points={[
               [0, -4, 0],
@@ -101,7 +106,10 @@ function App() {
         </Canvas>
       </div>
 
-      <Controls onDirectionChange={handleDirectionChange} />
+      <Controls
+        onDirectionChange={handleDirectionChange}
+        onQuaternionChange={handleQuaternionChange}
+      />
       <Source />
     </>
   );

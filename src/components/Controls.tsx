@@ -1,7 +1,7 @@
 import { InputAdornment, TextField } from "@mui/material";
 import Styles from "../styles/Controls.module.css";
 import AddIcon from "@mui/icons-material/Add";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Quaternion, Vector3 } from "three";
 import { MathUtils } from "three/src/math/MathUtils.js";
 
@@ -86,24 +86,17 @@ function unitVectorify(vector: [string, string, string], keepIndex: 0 | 1 | 2) {
   const squared = shifted.map((num) => num ** 2);
   const mode = squared[0] + squared[1] + squared[2] >= 1 ? "gain" : "drain";
 
-  console.log(`Mode: ${mode}`);
-  console.log(`Squared 1: ${squared}`);
-
   if (mode === "gain") {
     const remaining = 1 - squared[1];
     if (squared[2] > remaining) {
-      console.log("Entered IF");
       squared[2] = remaining - squared[0];
     } else {
-      console.log("Entered ELSE");
       squared[2] = 0;
       squared[0] = 1 - squared[1] - squared[2];
     }
   } else {
     squared[2] = 1 - squared[0] - squared[1];
   }
-
-  console.log(`Squared 2: ${squared}`);
 
   shifted = squared.map((num) => Math.sqrt(num));
   shifted = shifted.map((num, i) => (negative[i] ? -1 * num : num));
@@ -138,9 +131,10 @@ type BasisVector = "i" | "j" | "k";
 
 interface ControlsProps {
   onDirectionChange?: (newDir: [number, number, number]) => void;
+  onQuaternionChange?: (quaternion: Quaternion) => void;
 }
 
-function Controls(props: ControlsProps) {
+function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
   const [axis, setAxis] = useState<[string, string, string]>(["1.00", "0.00", "0.00"]);
   const [angle, setAngle] = useState("0");
   const iRef = useRef<HTMLInputElement>(null);
@@ -148,6 +142,10 @@ function Controls(props: ControlsProps) {
   const kRef = useRef<HTMLInputElement>(null);
   const angleRef = useRef<HTMLInputElement>(null);
   const [quaternion, setQuaternion] = useState<Quaternion>(() => createQuaternion(axis, angle));
+
+  useEffect(() => {
+    onQuaternionChange && onQuaternionChange(quaternion);
+  }, [quaternion, onQuaternionChange]);
 
   const handleChange = (basisVector: BasisVector, newVal: string) => {
     if (
@@ -228,8 +226,8 @@ function Controls(props: ControlsProps) {
 
     setAxis(newAxis);
     setQuaternion(createQuaternion(newAxis, angle));
-    props.onDirectionChange &&
-      props.onDirectionChange(newAxis.map((str) => parseFloat(str)) as [number, number, number]);
+    onDirectionChange &&
+      onDirectionChange(newAxis.map((str) => parseFloat(str)) as [number, number, number]);
   };
 
   const handleAngleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
