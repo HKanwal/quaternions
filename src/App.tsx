@@ -39,7 +39,7 @@ function App() {
 
     const iDiv = document.createElement("div");
     iDiv.className = "label";
-    iDiv.textContent = "i";
+    iDiv.textContent = "x";
 
     const iLabel = new CSS2DObject(iDiv);
     iLabel.position.set(5.2, 0, 0);
@@ -48,7 +48,7 @@ function App() {
 
     const jDiv = document.createElement("div");
     jDiv.className = "label";
-    jDiv.textContent = "j";
+    jDiv.textContent = "y";
 
     const jLabel = new CSS2DObject(jDiv);
     jLabel.position.set(0, 0, -5.2);
@@ -56,7 +56,7 @@ function App() {
 
     const kDiv = document.createElement("div");
     kDiv.className = "label";
-    kDiv.textContent = "k";
+    kDiv.textContent = "z";
 
     const kLabel = new CSS2DObject(kDiv);
     kLabel.position.set(0, 4.2, 0);
