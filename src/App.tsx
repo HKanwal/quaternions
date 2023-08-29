@@ -8,6 +8,7 @@ import { CSS2DObject, CSS2DRenderer } from "./lib/CSS2DRenderer";
 import { OrbitControls } from "./lib/OrbitControls";
 import { Line } from "@react-three/drei";
 import Grid from "./components/Grid";
+import Source from "./components/Source";
 
 const origin = new THREE.Vector3(0, 0, 0);
 
@@ -101,6 +102,7 @@ function App() {
       </div>
 
       <Controls onDirectionChange={handleDirectionChange} />
+      <Source />
     </>
   );
 }
