@@ -4,6 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useEffect, useRef, useState } from "react";
 import { Quaternion, Vector3 } from "three";
 import { MathUtils } from "three/src/math/MathUtils.js";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const numericDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "-"];
 
@@ -262,7 +263,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
     } else if (parseInt(angle) > 360) {
       angle = "360";
     } else if (parseInt(angle) < -360) {
-      angle = "-360"
+      angle = "-360";
     }
 
     setAngle(parseInt(angle).toString());
@@ -271,6 +272,10 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
 
   return (
     <div className={Styles.container}>
+      <div className={Styles["close-btn"]}>
+        <ExpandMoreIcon />
+      </div>
+
       <span className={Styles["field-label"]}>
         Axis of Rotation <span className={Styles["sub-label"]}>(Unit Vector)</span>
       </span>
