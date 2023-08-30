@@ -119,9 +119,7 @@ function unitVectorify(vector: [string, string, string], keepIndex: 0 | 1 | 2) {
 // angle in degrees
 function createQuaternion(axis: [string, string, string], angle: string) {
   const quaternion = new Quaternion();
-  const x = parseFloat(axis[0]);
-  const y = parseFloat(axis[1]);
-  const z = parseFloat(axis[2]);
+  const [x, y, z] = [parseFloat(axis[0]), parseFloat(axis[2]), -1 * parseFloat(axis[1])];
   const angleRad = MathUtils.degToRad(parseInt(angle));
   quaternion.setFromAxisAngle(new Vector3(x, y, z), angleRad);
   return quaternion;
