@@ -37,30 +37,30 @@ function App() {
       return;
     }
 
-    const iDiv = document.createElement("div");
-    iDiv.className = "label";
-    iDiv.textContent = "x";
+    const xDiv = document.createElement("div");
+    xDiv.className = "label";
+    xDiv.textContent = "x";
 
-    const iLabel = new CSS2DObject(iDiv);
-    iLabel.position.set(5.2, 0, 0);
+    const xLabel = new CSS2DObject(xDiv);
+    xLabel.position.set(5.2, 0, 0);
     // iLabel.center.set(0, 1);
-    scene.add(iLabel);
+    scene.add(xLabel);
 
-    const jDiv = document.createElement("div");
-    jDiv.className = "label";
-    jDiv.textContent = "y";
+    const yDiv = document.createElement("div");
+    yDiv.className = "label";
+    yDiv.textContent = "y";
 
-    const jLabel = new CSS2DObject(jDiv);
-    jLabel.position.set(0, 0, -5.2);
-    scene.add(jLabel);
+    const yLabel = new CSS2DObject(yDiv);
+    yLabel.position.set(0, 0, -5.2);
+    scene.add(yLabel);
 
-    const kDiv = document.createElement("div");
-    kDiv.className = "label";
-    kDiv.textContent = "z";
+    const zDiv = document.createElement("div");
+    zDiv.className = "label";
+    zDiv.textContent = "z";
 
-    const kLabel = new CSS2DObject(kDiv);
-    kLabel.position.set(0, 4.2, 0);
-    scene.add(kLabel);
+    const zLabel = new CSS2DObject(zDiv);
+    zLabel.position.set(0, 4.2, 0);
+    scene.add(zLabel);
 
     const labelRenderer = new CSS2DRenderer();
     labelRenderer.setSize(window.innerWidth, window.innerHeight);
