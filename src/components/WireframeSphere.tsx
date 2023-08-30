@@ -37,7 +37,7 @@ function WireframeSphere({ quaternion }: WireframeSphereProps) {
 
         <mesh position={[0, 0, 0]}>
           <sphereGeometry args={[1, WIDTH_SEGMENTS, HEIGHT_SEGMENTS]} />
-          <meshBasicMaterial color="grey" />
+          <meshBasicMaterial color="grey" opacity={0.5} transparent />
         </mesh>
 
         <mesh position={[1, 0, 0]}>
