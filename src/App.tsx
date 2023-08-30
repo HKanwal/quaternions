@@ -71,6 +71,7 @@ function App() {
     const controls = new OrbitControls(camera, labelRenderer.domElement);
     controls.minDistance = 5;
     controls.maxDistance = 100;
+    controls.enablePan = false;
 
     function animate() {
       requestAnimationFrame(animate);
