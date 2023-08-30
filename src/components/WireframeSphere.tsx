@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
 const WIDTH_SEGMENTS = 24;
@@ -13,12 +14,18 @@ interface WireframeSphereProps {
 
 function WireframeSphere({ quaternion }: WireframeSphereProps) {
   const groupRef = useRef<THREE.Group>(null);
+  const dynamicQuaternion = useMemo(() => {
+    return new THREE.Quaternion(0, 0, 0, 1);
+  }, []);
 
-  useEffect(() => {
-    if (quaternion && groupRef.current) {
-      groupRef.current.setRotationFromQuaternion(quaternion);
+  useFrame(() => {
+    if (!quaternion || !groupRef.current) {
+      return;
     }
-  }, [quaternion]);
+
+    dynamicQuaternion.slerp(quaternion, 0.05);
+    groupRef.current.setRotationFromQuaternion(dynamicQuaternion);
+  });
 
   return (
     <>
