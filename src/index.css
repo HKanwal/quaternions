@@ -10,6 +10,8 @@
   --medium: #343541;
   --medium-tinted: #3e3f4b;
   --dark: #202123;
+
+  overflow: hidden;
 }
 
 body {

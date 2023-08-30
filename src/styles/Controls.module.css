@@ -1,5 +1,6 @@
 .container {
   --border-radius: 5px;
+  --close-btn-height: 30px;
 
   position: absolute;
   bottom: 0;
@@ -12,12 +13,40 @@
   z-index: 4;
 }
 
+.move-in {
+  animation: move-in 1s ease forwards;
+}
+
+.move-out {
+  animation: move-out 1s ease forwards;
+}
+
+@keyframes move-in {
+  from {
+    transform: translateY(calc(100% - var(--close-btn-height)));
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes move-out {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(100% - var(--close-btn-height)));
+  }
+}
+
 .close-btn {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
-  height: 30px;
+  height: var(--close-btn-height);
   border-radius: var(--border-radius) 0 0 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 

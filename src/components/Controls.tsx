@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Quaternion, Vector3 } from "three";
 import { MathUtils } from "three/src/math/MathUtils.js";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
 const numericDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "-"];
 
@@ -134,6 +135,7 @@ interface ControlsProps {
 }
 
 function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
+  const [collapsed, setCollapsed] = useState(false);
   const [axis, setAxis] = useState<[string, string, string]>(["1.00", "0.00", "0.00"]);
   const [angle, setAngle] = useState("0");
   const iRef = useRef<HTMLInputElement>(null);
@@ -270,10 +272,20 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
     setQuaternion(createQuaternion(axis, angle));
   };
 
+  const handleCollapse = () => {
+    setCollapsed(!collapsed);
+  };
+
   return (
-    <div className={Styles.container}>
-      <div className={Styles["close-btn"]}>
-        <ExpandMoreIcon />
+    <div
+      className={
+        collapsed
+          ? `${Styles.container} ${Styles["move-out"]}`
+          : `${Styles.container} ${Styles["move-in"]}`
+      }
+    >
+      <div className={Styles["close-btn"]} onClick={handleCollapse}>
+        {collapsed ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </div>
 
       <span className={Styles["field-label"]}>
