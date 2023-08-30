@@ -42,7 +42,17 @@ function WireframeSphere({ quaternion }: WireframeSphereProps) {
 
         <mesh position={[1, 0, 0]}>
           <sphereGeometry args={[0.1, POINT_WIDTH_SEGMENTS, POINT_HEIGHT_SEGMENTS]} />
+          <meshBasicMaterial color="#FF0000" />
+        </mesh>
+
+        <mesh position={[0, 0, -1]}>
+          <sphereGeometry args={[0.1, POINT_WIDTH_SEGMENTS, POINT_HEIGHT_SEGMENTS]} />
           <meshBasicMaterial color="#00FF00" />
+        </mesh>
+
+        <mesh position={[0, 1, 0]}>
+          <sphereGeometry args={[0.1, POINT_WIDTH_SEGMENTS, POINT_HEIGHT_SEGMENTS]} />
+          <meshBasicMaterial color="#489fe5" />
         </mesh>
       </group>
     </>
