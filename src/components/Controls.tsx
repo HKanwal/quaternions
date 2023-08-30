@@ -257,13 +257,15 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
 
     if (angleRef.current.value === "" || angleRef.current.value === "-") {
       angle = "0";
-    } else if (parseInt(angleRef.current.value) === 0) {
+    } else if (parseInt(angle) === 0) {
       angle = "0";
-    } else if (parseInt(angleRef.current.value) > 360) {
+    } else if (parseInt(angle) > 360) {
       angle = "360";
+    } else if (parseInt(angle) < -360) {
+      angle = "-360"
     }
 
-    setAngle(angle);
+    setAngle(parseInt(angle).toString());
     setQuaternion(createQuaternion(axis, angle));
   };
 
