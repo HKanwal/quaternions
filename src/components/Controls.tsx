@@ -243,6 +243,11 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
     setAngle(e.target.value);
   };
 
+  const handleAngleClick = () => {
+    angleRef.current?.focus();
+    angleRef.current?.setSelectionRange(0, angleRef.current?.value.length);
+  };
+
   const handleAngleBlur = () => {
     if (!angleRef.current) {
       return;
@@ -340,6 +345,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
         size="small"
         value={angle}
         onChange={handleAngleChange}
+        onClick={handleAngleClick}
         onBlur={handleAngleBlur}
       />
 
