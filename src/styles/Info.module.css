@@ -1,0 +1,25 @@
+.modal {
+  --padding: 25px;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--dark);
+  height: 400px;
+  width: 400px;
+  color: white;
+  border: none;
+  padding: var(--padding);
+  border-radius: 5px;
+  overflow-y: scroll;
+}
+
+@media (max-width: 500px) {
+  .modal {
+    left: 0;
+    transform: translate(0, -50%);
+    width: calc(100% - 2*var(--padding));
+    right: 0;
+  }
+}

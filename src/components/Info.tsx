@@ -1,6 +1,7 @@
 import { Modal, Typography } from "@mui/material";
 import { useState } from "react";
 import Var from "./Var";
+import Styles from "../styles/Info.module.css";
 
 function Info() {
   const [open, setOpen] = useState(false);
@@ -23,22 +24,7 @@ function Info() {
       </div>
 
       <Modal open={open} onClose={() => setOpen(false)}>
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-            backgroundColor: "var(--dark)",
-            height: "400px",
-            width: "400px",
-            color: "white",
-            border: "none",
-            padding: "25px",
-            borderRadius: "5px",
-            overflowY: "scroll",
-          }}
-        >
+        <div className={Styles.modal}>
           <Typography variant="h6" component="h1">
             What is a Quaternion?
           </Typography>
