@@ -277,6 +277,28 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
     setQuaternion(createQuaternion(axis, angle));
   };
 
+  const handleKeyUp = (
+    e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+    basisVector: BasisVector | "angle"
+  ) => {
+    if (e.key === "Enter") {
+      switch (basisVector) {
+        case "i":
+          iRef.current?.blur();
+          break;
+        case "j":
+          jRef.current?.blur();
+          break;
+        case "k":
+          kRef.current?.blur();
+          break;
+        case "angle":
+          angleRef.current?.blur();
+          break;
+      }
+    }
+  };
+
   const handleCollapse = () => {
     setCollapsed(!collapsed);
   };
@@ -309,7 +331,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
               </InputAdornment>
             ),
           }}
-          inputProps={{ inputMode: "decimal" }}
+          inputProps={{ inputMode: "decimal", onKeyUp: (e) => handleKeyUp(e, "i") }}
           size="small"
           value={axis[0]}
           onChange={(e) => handleChange("i", e.target.value)}
@@ -328,7 +350,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
               </InputAdornment>
             ),
           }}
-          inputProps={{ inputMode: "decimal" }}
+          inputProps={{ inputMode: "decimal", onKeyUp: (e) => handleKeyUp(e, "j") }}
           size="small"
           value={axis[1]}
           onChange={(e) => handleChange("j", e.target.value)}
@@ -347,7 +369,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
               </InputAdornment>
             ),
           }}
-          inputProps={{ inputMode: "decimal" }}
+          inputProps={{ inputMode: "decimal", onKeyUp: (e) => handleKeyUp(e, "k") }}
           size="small"
           value={axis[2]}
           onChange={(e) => handleChange("k", e.target.value)}
@@ -369,7 +391,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
             </InputAdornment>
           ),
         }}
-        inputProps={{ inputMode: "decimal" }}
+        inputProps={{ inputMode: "decimal", onKeyUp: (e) => handleKeyUp(e, "angle") }}
         size="small"
         value={angle}
         onChange={handleAngleChange}
