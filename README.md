@@ -2,14 +2,12 @@
 
 [![GitHub pages.yml Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/HKanwal/quaternions/pages.yml)](https://github.com/HKanwal/quaternions/actions/workflows/pages.yml)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an animated demonstration of 3D rotation using quaternions. Learn about quaternions interactively by editing their axis or angle of rotation.
 
-Currently, two official plugins are available:
+## Stack
+### Frontend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
+[![Static Badge](https://img.shields.io/badge/React-61DAFB?logo=React&logoColor=white)](https://react.dev/)
 
 If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
