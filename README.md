@@ -7,7 +7,7 @@ This is an animated demonstration of 3D rotation using quaternions. Learn about 
 ## Stack
 ### Frontend
 
-[![Static Badge](https://img.shields.io/badge/React-61DAFB?logo=React&logoColor=white)](https://react.dev/)
+[![React Static Badge](https://img.shields.io/badge/React-61DAFB?logo=React&color=23272F)](https://react.dev/)
 
 If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
