@@ -1,27 +1,22 @@
-# React + TypeScript + Vite
+# Quaternions
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![GitHub pages.yml Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/HKanwal/quaternions/pages.yml)](https://github.com/HKanwal/quaternions/actions/workflows/pages.yml)
 
-Currently, two official plugins are available:
+This is an animated demonstration of 3D rotation using quaternions. Learn about quaternions interactively by editing their axis or angle of rotation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
 
-## Expanding the ESLint configuration
+[![React Static Badge](https://img.shields.io/badge/React-61DAFB?logo=React&color=23272F)](https://react.dev/)
+[![Static Badge](https://img.shields.io/badge/Three.js-black?logo=Three.js)](https://threejs.org/)
+[![TypeScript Static Badge](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://github.com/search?q=user%3AHKanwal+language%3Atypescript)
+[![HTML Static Badge](https://img.shields.io/badge/HTML-E34F26?logo=html5&logoColor=white)](https://github.com/search?q=user%3AHKanwal+language%3Ahtml)
+[![CSS Static Badge](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=white)](https://github.com/search?q=user%3AHKanwal+language%3Acss)
+[![GH Pages Static Badge](https://img.shields.io/badge/GitHub%20Pages-181717?logo=github&logoColor=white)](https://github.com/HKanwal/quaternions/deployments/activity_log?environment=github-pages)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Continuous Deployment
 
-- Configure the top-level `parserOptions` property like this:
+React app is automatically built and deployed to GitHub Pages [by this workflow](https://github.com/HKanwal/quaternions/blob/main/.github/workflows/pages.yml).
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Run Locally
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Run `npm install` to install dependencies. Run `npm run dev` for a dev server. Navigate to `http://localhost:5173/quaternions/` to see it. The application will automatically reload if you change any of the source files. Run `ng build` to build the project. The build artifacts will be stored in the dist/ directory.
