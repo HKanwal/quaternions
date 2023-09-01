@@ -136,7 +136,9 @@ interface ControlsProps {
 }
 
 function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(() => {
+    return window.innerHeight < 700;
+  });
   const [axis, setAxis] = useState<[string, string, string]>(["1.00", "0.00", "0.00"]);
   const [angle, setAngle] = useState("0");
   const iRef = useRef<HTMLInputElement>(null);
