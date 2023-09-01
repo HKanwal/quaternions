@@ -5,7 +5,6 @@
 This is an animated demonstration of 3D rotation using quaternions. Learn about quaternions interactively by editing their axis or angle of rotation.
 
 ## Stack
-### Frontend
 
 [![React Static Badge](https://img.shields.io/badge/React-61DAFB?logo=React&color=23272F)](https://react.dev/)
 [![Static Badge](https://img.shields.io/badge/Three.js-black?logo=Three.js)](https://threejs.org/)
@@ -13,10 +12,6 @@ This is an animated demonstration of 3D rotation using quaternions. Learn about 
 [![HTML Static Badge](https://img.shields.io/badge/HTML-E34F26?logo=html5&logoColor=white)](https://github.com/search?q=user%3AHKanwal+language%3Ahtml)
 [![CSS Static Badge](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=white)](https://github.com/search?q=user%3AHKanwal+language%3Acss)
 [![GH Pages Static Badge](https://img.shields.io/badge/GitHub%20Pages-181717?logo=github&logoColor=white)](https://github.com/HKanwal/quaternions/deployments/activity_log?environment=github-pages)
-
-### Backend
-
-None.
 
 ## Continuous Deployment
 
