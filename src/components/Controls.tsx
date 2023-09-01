@@ -10,7 +10,7 @@ import Quaternion from "./Quaternion";
 
 const numericDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "-"];
 
-function validNumberic(str: string) {
+function invalidNumberic(str: string) {
   let invalid = false;
   let numPeriods = 0;
   let i = 0;
@@ -159,7 +159,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
       newVal.length > 5 ||
       parseFloat(newVal) > 1 ||
       parseFloat(newVal) < -1 ||
-      validNumberic(newVal)
+      invalidNumberic(newVal)
     ) {
       return;
     }
@@ -246,7 +246,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
     if (
       (val.length > 3 && !val.includes("-")) ||
       val.length > 4 ||
-      validNumberic(val) ||
+      invalidNumberic(val) ||
       val.includes(".")
     ) {
       return;
