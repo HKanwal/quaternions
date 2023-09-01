@@ -79,6 +79,12 @@ function App() {
     }
 
     animate();
+
+    function onWindowResize() {
+      labelRenderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    window.addEventListener("resize", onWindowResize);
   }, [camera, scene]);
 
   const handleDirectionChange = (newDir: [number, number, number]) => {
