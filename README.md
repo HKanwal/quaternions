@@ -14,19 +14,10 @@ This is an animated demonstration of 3D rotation using quaternions. Learn about 
 [![CSS Static Badge](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=white)](https://github.com/search?q=user%3AHKanwal+language%3Acss)
 [![GH Pages Static Badge](https://img.shields.io/badge/GitHub%20Pages-181717?logo=github&logoColor=white)](https://github.com/HKanwal/quaternions/deployments/activity_log?environment=github-pages)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Backend
 
-- Configure the top-level `parserOptions` property like this:
+None.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Continuous Deployment
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+React app is automatically built and deployed to GitHub Pages [by this workflow](https://github.com/HKanwal/quaternions/blob/main/.github/workflows/pages.yml).
