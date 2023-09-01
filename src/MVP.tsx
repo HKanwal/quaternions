@@ -35,6 +35,7 @@ function MVP() {
     label.position.set(1.5 * 1, 0, 0);
     // label.center.set(0, 1);
     mesh.add(label);
+    console.log("testing gh actions");
 
     const renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
