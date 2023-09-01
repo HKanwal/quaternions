@@ -300,7 +300,6 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
       <div className={Styles.axis}>
         <TextField
           type="text"
-          inputMode="decimal"
           inputRef={iRef}
           sx={{ m: 1, width: "9ch" }}
           InputProps={{
@@ -310,6 +309,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
               </InputAdornment>
             ),
           }}
+          inputProps={{ inputMode: "decimal" }}
           size="small"
           value={axis[0]}
           onChange={(e) => handleChange("i", e.target.value)}
@@ -319,7 +319,6 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
         <AddIcon />
         <TextField
           type="text"
-          inputMode="decimal"
           inputRef={jRef}
           sx={{ m: 1, width: "9ch" }}
           InputProps={{
@@ -329,6 +328,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
               </InputAdornment>
             ),
           }}
+          inputProps={{ inputMode: "decimal" }}
           size="small"
           value={axis[1]}
           onChange={(e) => handleChange("j", e.target.value)}
@@ -338,7 +338,6 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
         <AddIcon />
         <TextField
           type="text"
-          inputMode="decimal"
           inputRef={kRef}
           sx={{ m: 1, width: "9ch" }}
           InputProps={{
@@ -348,6 +347,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
               </InputAdornment>
             ),
           }}
+          inputProps={{ inputMode: "decimal" }}
           size="small"
           value={axis[2]}
           onChange={(e) => handleChange("k", e.target.value)}
@@ -360,7 +360,6 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
 
       <TextField
         type="text"
-        inputMode="decimal"
         inputRef={angleRef}
         sx={{ m: 1, width: "15ch" }}
         InputProps={{
@@ -370,6 +369,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
             </InputAdornment>
           ),
         }}
+        inputProps={{ inputMode: "decimal" }}
         size="small"
         value={angle}
         onChange={handleAngleChange}
