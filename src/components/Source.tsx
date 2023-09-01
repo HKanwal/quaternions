@@ -3,9 +3,9 @@ import { Fab } from "@mui/material";
 
 function Source() {
   return (
-    <div style={{ position: "absolute", left: "20px", bottom: "45px", zIndex: 99 }}>
-      <Fab color="primary" size="large" href="https://github.com/HKanwal/quaternions">
-        <CodeIcon fontSize="large" />
+    <div style={{ position: "absolute", right: "20px", top: "20px", zIndex: 99 }}>
+      <Fab color="default" size="small" href="https://github.com/HKanwal/quaternions">
+        <CodeIcon fontSize="small" />
       </Fab>
     </div>
   );

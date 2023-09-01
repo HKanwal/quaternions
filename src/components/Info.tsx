@@ -12,7 +12,7 @@ function Info() {
         style={{
           position: "absolute",
           left: "20px",
-          top: "20px",
+          top: "25px",
           color: "#90caf9",
           fontSize: "22px",
           cursor: "pointer",
