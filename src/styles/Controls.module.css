@@ -1,16 +1,24 @@
 .container {
   --border-radius: 5px;
   --close-btn-height: 30px;
+  --padding: 10px;
 
   position: absolute;
   bottom: 0;
   right: 0;
   width: 420px;
   background-color: var(--dark);
-  padding: 30px 10px 10px 10px;
+  padding: 30px var(--padding) var(--padding) var(--padding);
   color: white;
   border-radius: var(--border-radius) 0 0 0;
   z-index: 100;
+}
+
+@media (max-width: 500px) {
+  .container {
+    left: 0;
+    width: calc(100% - 2*var(--padding));
+  }
 }
 
 .move-in {
