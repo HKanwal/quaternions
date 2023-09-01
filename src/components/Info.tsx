@@ -54,9 +54,9 @@ function Info() {
           </Typography>
           <Typography variant="body1" component="section">
             Gimbal lock involves the loss of a rotational degree of freedom, and occurs when two
-            Euler axes become exactly aligned. Gimbal lock sometimes makes it impossible to directly
-            interpolate between two rotational states, and can cause wonky animations. It is
-            fortunate for us that we have quaternions to save the day!
+            Euler angles become exactly aligned. Gimbal lock sometimes makes it impossible to
+            directly interpolate between two rotational states, and can cause wonky animations. It
+            is fortunate for us that we have quaternions to save the day!
           </Typography>
 
           <Typography variant="h6" component="h1" sx={{ mt: 1 }}>
