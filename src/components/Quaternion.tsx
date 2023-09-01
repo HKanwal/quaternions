@@ -32,7 +32,7 @@ function Quaternion(props: QuaternionProps) {
         flexWrap: "wrap",
       }}
     >
-      <span style={{ display: "block" }}>cos({props.angle}&deg;/2)</span>
+      <span>cos({props.angle}&deg;/2)</span>
       <Plus />
       <span style={{ display: "flex" }}>
         sin({props.angle}&deg;/2) ({props.axis[0]}
