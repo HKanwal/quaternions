@@ -16,3 +16,7 @@ This is an animated demonstration of 3D rotation using quaternions. Learn about 
 ## Continuous Deployment
 
 React app is automatically built and deployed to GitHub Pages [by this workflow](https://github.com/HKanwal/quaternions/blob/main/.github/workflows/pages.yml).
+
+## Run Locally
+
+Run `npm install` to install dependencies. Run `npm run dev` for a dev server. Navigate to `http://localhost:5173/quaternions/` to see it. The application will automatically reload if you change any of the source files. Run `ng build` to build the project. The build artifacts will be stored in the dist/ directory.
