@@ -25,3 +25,7 @@
   padding: 2px;
   background-color: transparent;
 }
+
+.MuiTextField-root {
+  margin-top: 0 !important;
+}
