@@ -1,4 +1,6 @@
-# React + TypeScript + Vite
+# Quaternions
+
+[![GitHub pages.yml Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/HKanwal/quaternions/ng.yml)](https://github.com/HKanwal/quaternions/actions/workflows/pages.yml)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
