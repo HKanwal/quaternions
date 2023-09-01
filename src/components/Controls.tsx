@@ -164,6 +164,10 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
       return;
     }
 
+    if (newVal.includes(".") && newVal.split(".")[1].length > 2) {
+      return;
+    }
+
     switch (basisVector) {
       case "i":
         setAxis([newVal, axis[1], axis[2]]);
