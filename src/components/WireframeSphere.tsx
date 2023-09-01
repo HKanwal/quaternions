@@ -37,8 +37,7 @@ function WireframeSphere({ quaternion }: WireframeSphereProps) {
     iDiv.textContent = "i";
 
     const iLabel = new CSS2DObject(iDiv);
-    iLabel.position.set(0, 0, 0);
-    iLabel.center.set(0, 0);
+    iLabel.position.set(0.2, 0, 0);
     iRef.current?.add(iLabel);
 
     const jDiv = document.createElement("div");
@@ -46,8 +45,7 @@ function WireframeSphere({ quaternion }: WireframeSphereProps) {
     jDiv.textContent = "j";
 
     const jLabel = new CSS2DObject(jDiv);
-    jLabel.position.set(0, 0, 0);
-    jLabel.center.set(0, 0);
+    jLabel.position.set(0, 0, -0.2);
     jRef.current?.add(jLabel);
 
     const kDiv = document.createElement("div");
@@ -55,8 +53,7 @@ function WireframeSphere({ quaternion }: WireframeSphereProps) {
     kDiv.textContent = "k";
 
     const kLabel = new CSS2DObject(kDiv);
-    kLabel.position.set(0, 0, 0);
-    kLabel.center.set(0, 0);
+    kLabel.position.set(0, 0.2, 0);
     kRef.current?.add(kLabel);
   }, []);
 
