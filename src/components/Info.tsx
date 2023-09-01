@@ -77,13 +77,23 @@ function Info() {
             Learn More
           </Typography>
           <Typography variant="body1" component="section">
-            <a href="https://www.youtube.com/watch?v=d4EgbgTm0Bg" style={{ display: "block" }}>
+            <a
+              href="https://www.youtube.com/watch?v=d4EgbgTm0Bg"
+              style={{ display: "block" }}
+              target="_blank"
+            >
               Visualizing Quaternion Multiplication
             </a>
-            <a href="https://youtu.be/zjMuIxRvygQ?si=b-SYCHEiCyel3Cu_" style={{ display: "block" }}>
+            <a
+              href="https://youtu.be/zjMuIxRvygQ?si=b-SYCHEiCyel3Cu_"
+              style={{ display: "block" }}
+              target="_blank"
+            >
               Quaternions & 3D Rotation
             </a>
-            <a href="https://youtu.be/zc8b2Jo7mno?si=Ps9h_qUkX3pvQ1Jn">Gimbal Lock</a>
+            <a href="https://youtu.be/zc8b2Jo7mno?si=Ps9h_qUkX3pvQ1Jn" target="_blank">
+              Gimbal Lock
+            </a>
           </Typography>
         </div>
       </Modal>
