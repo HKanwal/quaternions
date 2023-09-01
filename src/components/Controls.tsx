@@ -161,8 +161,6 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
     if (
       (newVal.length > 4 && !newVal.includes("-")) ||
       newVal.length > 5 ||
-      parseFloat(newVal) > 1 ||
-      parseFloat(newVal) < -1 ||
       invalidNumberic(newVal)
     ) {
       return;
@@ -211,6 +209,14 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
     }
 
     let newAxis = [...axis] as [string, string, string];
+
+    for (let i = 0; i < newAxis.length; i++) {
+      if (parseFloat(newAxis[i]) > 1) {
+        newAxis[i] = "1.00";
+      } else if (parseFloat(newAxis[i]) < -1) {
+        newAxis[i] = "-1.00";
+      }
+    }
 
     if (val === "" || val === "-") {
       switch (basisVector) {
