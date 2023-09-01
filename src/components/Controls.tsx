@@ -300,6 +300,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
       <div className={Styles.axis}>
         <TextField
           type="text"
+          inputMode="decimal"
           inputRef={iRef}
           sx={{ m: 1, width: "9ch" }}
           InputProps={{
@@ -318,6 +319,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
         <AddIcon />
         <TextField
           type="text"
+          inputMode="decimal"
           inputRef={jRef}
           sx={{ m: 1, width: "9ch" }}
           InputProps={{
@@ -336,6 +338,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
         <AddIcon />
         <TextField
           type="text"
+          inputMode="decimal"
           inputRef={kRef}
           sx={{ m: 1, width: "9ch" }}
           InputProps={{
@@ -357,6 +360,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
 
       <TextField
         type="text"
+        inputMode="decimal"
         inputRef={angleRef}
         sx={{ m: 1, width: "15ch" }}
         InputProps={{
