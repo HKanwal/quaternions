@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 500px) {
+  .container {
+    font-size: min(18px, 4vmin);
+  }
+}
