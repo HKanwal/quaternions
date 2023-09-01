@@ -1,16 +1,4 @@
-function Var(props: { letter: string }) {
-  return (
-    <span
-      style={{
-        fontFamily: "'Computer Modern Serif', serif",
-        fontStyle: "italic",
-        fontSize: "20px",
-      }}
-    >
-      {props.letter}
-    </span>
-  );
-}
+import Var from "./Var";
 
 function Plus() {
   return <span style={{ margin: "0 3px 0 3px", display: "block" }}>+</span>;
@@ -36,9 +24,9 @@ function Quaternion(props: QuaternionProps) {
       <Plus />
       <span style={{ display: "flex" }}>
         sin({props.angle}&deg;/2) ({props.axis[0]}
-        <Var letter="i" /> <Plus /> {props.axis[1]}
-        <Var letter="j" /> <Plus /> {props.axis[2]}
-        <Var letter="k" />)
+        <Var letter="i" fontSize="20px" /> <Plus /> {props.axis[1]}
+        <Var letter="j" fontSize="20px" /> <Plus /> {props.axis[2]}
+        <Var letter="k" fontSize="20px" />)
       </span>
     </div>
   );

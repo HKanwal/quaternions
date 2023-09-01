@@ -9,6 +9,7 @@ import { OrbitControls } from "./lib/OrbitControls";
 import { Line } from "@react-three/drei";
 import Grid from "./components/Grid";
 import Source from "./components/Source";
+import Info from "./components/Info";
 
 const origin = new THREE.Vector3(0, 0, 0);
 
@@ -117,6 +118,7 @@ function App() {
         onDirectionChange={handleDirectionChange}
         onQuaternionChange={handleQuaternionChange}
       />
+      <Info />
       <Source />
     </>
   );
