@@ -67,7 +67,7 @@ function App() {
     labelRenderer.setSize(window.innerWidth, window.innerHeight);
     labelRenderer.domElement.style.position = "absolute";
     labelRenderer.domElement.style.top = "0px";
-    document.body.appendChild(labelRenderer.domElement);
+    document.getElementById("root")?.appendChild(labelRenderer.domElement);
 
     const controls = new OrbitControls(camera, labelRenderer.domElement);
     controls.minDistance = 5;
