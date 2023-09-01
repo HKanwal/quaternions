@@ -13,7 +13,7 @@ function Var(props: { letter: string }) {
 }
 
 function Plus() {
-  return <span style={{ margin: "0 3px 0 3px" }}>+</span>;
+  return <span style={{ margin: "0 3px 0 3px", display: "block" }}>+</span>;
 }
 
 interface QuaternionProps {
@@ -23,11 +23,23 @@ interface QuaternionProps {
 
 function Quaternion(props: QuaternionProps) {
   return (
-    <div style={{ width: "100%", fontSize: "18px", display: "flex", justifyContent: "center" }}>
-      cos({props.angle}&deg;/2) <Plus /> sin({props.angle}&deg;/2)({props.axis[0]}
-      <Var letter="i" /> <Plus /> {props.axis[1]}
-      <Var letter="j" /> <Plus /> {props.axis[2]}
-      <Var letter="k" />)
+    <div
+      style={{
+        width: "100%",
+        fontSize: "18px",
+        display: "flex",
+        justifyContent: "center",
+        flexWrap: "wrap",
+      }}
+    >
+      <span style={{ display: "block" }}>cos({props.angle}&deg;/2)</span>
+      <Plus />
+      <span style={{ display: "flex" }}>
+        sin({props.angle}&deg;/2) ({props.axis[0]}
+        <Var letter="i" /> <Plus /> {props.axis[1]}
+        <Var letter="j" /> <Plus /> {props.axis[2]}
+        <Var letter="k" />)
+      </span>
     </div>
   );
 }
