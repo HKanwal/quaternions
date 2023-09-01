@@ -8,7 +8,7 @@
   right: 0;
   width: 420px;
   background-color: var(--dark);
-  padding: 30px var(--padding) var(--padding) var(--padding);
+  padding: 30px var(--padding) 15px var(--padding);
   color: white;
   border-radius: var(--border-radius) 0 0 0;
   z-index: 100;
@@ -85,72 +85,9 @@
   display: block;
   margin-left: 8px;
   margin-top: 14px;
-  margin-bottom: 2px;
+  margin-bottom: 10px;
 }
 
 .sub-label {
   color: rgba(255, 255, 255, 0.5);
-}
-
-.quaternion {
-  font-family: "Computer Modern Serif", serif;
-  color: white;
-  margin-left: 8px;
-  margin-bottom: 10px;
-
-  display: flex;
-  align-items: center;
-}
-
-.q {
-  font-style: italic;
-  font-size: 24px;
-}
-
-.equals {
-  font-family: serif;
-  font-size: 24px;
-  font-weight: 600;
-
-  margin-left: 10px;
-}
-
-.cos {
-  font-size: 24px;
-}
-
-.angle {
-  font-size: 18px;
-  margin-left: 2px;
-}
-
-.user-angle {
-  display: inline-block;
-  transform: translateY(1px);
-}
-
-.division {
-  margin-left: 2px;
-  margin-right: 2px;
-}
-
-.two {
-  display: inline-block;
-  font-size: 19px;
-  transform: translateY(1px);
-}
-
-.sin {
-  font-size: 24px;
-  /* margin-left: 10px; */
-}
-
-.var {
-  font-style: italic;
-  margin-left: 1px;
-  font-size: 20px;
-}
-
-.fs18 {
-  font-size: 18px;
 }

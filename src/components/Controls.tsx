@@ -2,10 +2,11 @@ import { InputAdornment, TextField } from "@mui/material";
 import Styles from "../styles/Controls.module.css";
 import AddIcon from "@mui/icons-material/Add";
 import { useEffect, useRef, useState } from "react";
-import { Quaternion, Vector3 } from "three";
+import * as THREE from "three";
 import { MathUtils } from "three/src/math/MathUtils.js";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import Quaternion from "./Quaternion";
 
 const numericDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "-"];
 
@@ -120,10 +121,10 @@ function unitVectorify(vector: [string, string, string], keepIndex: 0 | 1 | 2) {
 
 // angle in degrees
 function createQuaternion(axis: [string, string, string], angle: string) {
-  const quaternion = new Quaternion();
+  const quaternion = new THREE.Quaternion();
   const [x, y, z] = [parseFloat(axis[0]), parseFloat(axis[2]), -1 * parseFloat(axis[1])];
   const angleRad = MathUtils.degToRad(parseInt(angle));
-  quaternion.setFromAxisAngle(new Vector3(x, y, z), angleRad);
+  quaternion.setFromAxisAngle(new THREE.Vector3(x, y, z), angleRad);
   return quaternion;
 }
 
@@ -131,7 +132,7 @@ type BasisVector = "i" | "j" | "k";
 
 interface ControlsProps {
   onDirectionChange?: (newDir: [number, number, number]) => void;
-  onQuaternionChange?: (quaternion: Quaternion) => void;
+  onQuaternionChange?: (quaternion: THREE.Quaternion) => void;
 }
 
 function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
@@ -142,7 +143,9 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
   const jRef = useRef<HTMLInputElement>(null);
   const kRef = useRef<HTMLInputElement>(null);
   const angleRef = useRef<HTMLInputElement>(null);
-  const [quaternion, setQuaternion] = useState<Quaternion>(() => createQuaternion(axis, angle));
+  const [quaternion, setQuaternion] = useState<THREE.Quaternion>(() =>
+    createQuaternion(axis, angle)
+  );
 
   useEffect(() => {
     onQuaternionChange && onQuaternionChange(quaternion);
@@ -370,31 +373,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
 
       <span className={Styles["field-label"]}>Quaternion</span>
 
-      {/* TODO: Fix this spaghetti styling and move to a new component */}
-      <div className={Styles.quaternion}>
-        <span className={Styles.cos}>cos</span>
-        <span className={Styles.angle}>
-          (<span className={Styles["user-angle"]}>{angle}</span>
-          <span className={Styles.division}>/</span>
-          <span className={Styles.two}>2</span>)
-        </span>
-        <AddIcon fontSize="small" />
-        <span className={Styles.sin}>sin</span>
-        <span className={Styles.angle}>
-          (<span className={Styles["user-angle"]}>{angle}</span>
-          <span className={Styles.division}>/</span>
-          <span className={Styles.two}>2</span>)
-        </span>
-        <span className={Styles.angle}>({axis[0]}</span>
-        <span className={Styles.var}>i</span>
-        <AddIcon fontSize="small" />
-        <span className={Styles.fs18}>{axis[1]}</span>
-        <span className={Styles.var}>j</span>
-        <AddIcon fontSize="small" />
-        <span className={Styles.fs18}>{axis[2]}</span>
-        <span className={Styles.var}>k</span>
-        <span className={Styles.angle}>)</span>
-      </div>
+      <Quaternion angle={angle} axis={axis} />
     </div>
   );
 }
