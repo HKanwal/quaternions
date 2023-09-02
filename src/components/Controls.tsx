@@ -259,7 +259,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
             }
             return newErrors as [boolean, boolean, boolean];
           });
-        }, 400);
+        }, 600);
       }
     }
 
@@ -339,7 +339,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
       setAngleError(true);
       setTimeout(() => {
         setAngleError(false);
-      }, 400);
+      }, 600);
     }
 
     setAngle(parseInt(angle).toString());
