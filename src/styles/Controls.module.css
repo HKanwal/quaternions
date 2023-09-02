@@ -14,10 +14,21 @@
   z-index: 100;
 }
 
+.form {
+  width: 100%;
+}
+
 @media (max-width: 500px) {
   .container {
     left: 0;
-    width: calc(100% - 2*var(--padding));
+    width: calc(100% - 2 * var(--padding));
+  }
+}
+
+@media (max-height: 650px) {
+  .form {
+    max-height: 20svh;
+    overflow-y: scroll;
   }
 }
 

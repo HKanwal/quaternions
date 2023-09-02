@@ -340,105 +340,107 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
         {collapsed ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </div>
 
-      <span className={Styles["field-label"]}>
-        Axis of Rotation <span className={Styles["sub-label"]}>(Unit Vector)</span>
-      </span>
+      <div className={Styles.form}>
+        <span className={Styles["field-label"]}>
+          Axis of Rotation <span className={Styles["sub-label"]}>(Unit Vector)</span>
+        </span>
 
-      <div className={Styles.axis}>
+        <div className={Styles.axis}>
+          <TextField
+            type="text"
+            inputRef={iRef}
+            sx={{ m: 1, width: "9ch" }}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <i className={Styles.adornment}>i</i>
+                </InputAdornment>
+              ),
+            }}
+            inputProps={{
+              onKeyUp: (e) => handleKeyUp(e, "i"),
+              ...(iOS() ? {} : { inputMode: "decimal" }),
+            }}
+            size="small"
+            value={axis[0]}
+            onChange={(e) => handleChange("i", e.target.value)}
+            onClick={() => handleClick("i")}
+            onBlur={() => handleBlur("i")}
+          />
+          <AddIcon />
+          <TextField
+            type="text"
+            inputRef={jRef}
+            sx={{ m: 1, width: "9ch" }}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <span className={Styles.adornment}>j</span>
+                </InputAdornment>
+              ),
+            }}
+            inputProps={{
+              onKeyUp: (e) => handleKeyUp(e, "j"),
+              ...(iOS() ? {} : { inputMode: "decimal" }),
+            }}
+            size="small"
+            value={axis[1]}
+            onChange={(e) => handleChange("j", e.target.value)}
+            onClick={() => handleClick("j")}
+            onBlur={() => handleBlur("j")}
+          />
+          <AddIcon />
+          <TextField
+            type="text"
+            inputRef={kRef}
+            sx={{ m: 1, width: "9ch" }}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <i className={Styles.adornment}>k</i>
+                </InputAdornment>
+              ),
+            }}
+            inputProps={{
+              onKeyUp: (e) => handleKeyUp(e, "k"),
+              ...(iOS() ? {} : { inputMode: "decimal" }),
+            }}
+            size="small"
+            value={axis[2]}
+            onChange={(e) => handleChange("k", e.target.value)}
+            onClick={() => handleClick("k")}
+            onBlur={() => handleBlur("k")}
+          />
+        </div>
+
+        <span className={Styles["field-label"]}>Angle of Rotation</span>
+
         <TextField
           type="text"
-          inputRef={iRef}
-          sx={{ m: 1, width: "9ch" }}
+          inputRef={angleRef}
+          sx={{ m: 1, width: "15ch" }}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <i className={Styles.adornment}>i</i>
+                <i className={Styles.adornment}>degrees</i>
               </InputAdornment>
             ),
           }}
           inputProps={{
-            onKeyUp: (e) => handleKeyUp(e, "i"),
+            onKeyUp: (e) => handleKeyUp(e, "angle"),
             ...(iOS() ? {} : { inputMode: "decimal" }),
           }}
           size="small"
-          value={axis[0]}
-          onChange={(e) => handleChange("i", e.target.value)}
-          onClick={() => handleClick("i")}
-          onBlur={() => handleBlur("i")}
+          value={angle}
+          onChange={handleAngleChange}
+          onClick={handleAngleClick}
+          onBlur={handleAngleBlur}
         />
-        <AddIcon />
-        <TextField
-          type="text"
-          inputRef={jRef}
-          sx={{ m: 1, width: "9ch" }}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <span className={Styles.adornment}>j</span>
-              </InputAdornment>
-            ),
-          }}
-          inputProps={{
-            onKeyUp: (e) => handleKeyUp(e, "j"),
-            ...(iOS() ? {} : { inputMode: "decimal" }),
-          }}
-          size="small"
-          value={axis[1]}
-          onChange={(e) => handleChange("j", e.target.value)}
-          onClick={() => handleClick("j")}
-          onBlur={() => handleBlur("j")}
-        />
-        <AddIcon />
-        <TextField
-          type="text"
-          inputRef={kRef}
-          sx={{ m: 1, width: "9ch" }}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <i className={Styles.adornment}>k</i>
-              </InputAdornment>
-            ),
-          }}
-          inputProps={{
-            onKeyUp: (e) => handleKeyUp(e, "k"),
-            ...(iOS() ? {} : { inputMode: "decimal" }),
-          }}
-          size="small"
-          value={axis[2]}
-          onChange={(e) => handleChange("k", e.target.value)}
-          onClick={() => handleClick("k")}
-          onBlur={() => handleBlur("k")}
-        />
+
+        <span className={Styles["field-label"]}>Quaternion</span>
+
+        <Quaternion angle={angle} axis={axis} />
       </div>
-
-      <span className={Styles["field-label"]}>Angle of Rotation</span>
-
-      <TextField
-        type="text"
-        inputRef={angleRef}
-        sx={{ m: 1, width: "15ch" }}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <i className={Styles.adornment}>degrees</i>
-            </InputAdornment>
-          ),
-        }}
-        inputProps={{
-          onKeyUp: (e) => handleKeyUp(e, "angle"),
-          ...(iOS() ? {} : { inputMode: "decimal" }),
-        }}
-        size="small"
-        value={angle}
-        onChange={handleAngleChange}
-        onClick={handleAngleClick}
-        onBlur={handleAngleBlur}
-      />
-
-      <span className={Styles["field-label"]}>Quaternion</span>
-
-      <Quaternion angle={angle} axis={axis} />
     </div>
   );
 }
