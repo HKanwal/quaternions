@@ -13,13 +13,14 @@
   padding: var(--padding);
   border-radius: 5px;
   overflow-y: scroll;
+  max-height: 70%;
 }
 
 @media (max-width: 500px) {
   .modal {
     left: 0;
     transform: translate(0, -50%);
-    width: calc(100% - 2*var(--padding));
+    width: calc(100% - 2 * var(--padding));
     right: 0;
   }
 }
