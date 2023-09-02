@@ -163,6 +163,8 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
   const [quaternion, setQuaternion] = useState<THREE.Quaternion>(() =>
     createQuaternion(axis, angle)
   );
+  const [errors, setErrors] = useState<[boolean, boolean, boolean]>([false, false, false]);
+  const [angleError, setAngleError] = useState(false);
 
   useEffect(() => {
     onQuaternionChange && onQuaternionChange(quaternion);
@@ -222,10 +224,42 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
     let newAxis = [...axis] as [string, string, string];
 
     for (let i = 0; i < newAxis.length; i++) {
+      let flag = false;
+
       if (parseFloat(newAxis[i]) > 1) {
         newAxis[i] = "1.00";
+        flag = true;
       } else if (parseFloat(newAxis[i]) < -1) {
         newAxis[i] = "-1.00";
+        flag = true;
+      }
+
+      if (flag) {
+        setErrors((prevErrors) => {
+          const newErrors = [...prevErrors];
+          if (basisVector === "i") {
+            newErrors[0] = true;
+          } else if (basisVector === "j") {
+            newErrors[1] = true;
+          } else {
+            newErrors[2] = true;
+          }
+          return newErrors as [boolean, boolean, boolean];
+        });
+
+        setTimeout(() => {
+          setErrors((prevErrors) => {
+            const newErrors = [...prevErrors];
+            if (basisVector === "i") {
+              newErrors[0] = false;
+            } else if (basisVector === "j") {
+              newErrors[1] = false;
+            } else {
+              newErrors[2] = false;
+            }
+            return newErrors as [boolean, boolean, boolean];
+          });
+        }, 400);
       }
     }
 
@@ -287,6 +321,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
     }
 
     let angle: string = angleRef.current.value;
+    let flag = false;
 
     if (angleRef.current.value === "" || angleRef.current.value === "-") {
       angle = "0";
@@ -294,8 +329,17 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
       angle = "0";
     } else if (parseInt(angle) > 360) {
       angle = "360";
+      flag = true;
     } else if (parseInt(angle) < -360) {
       angle = "-360";
+      flag = true;
+    }
+
+    if (flag) {
+      setAngleError(true);
+      setTimeout(() => {
+        setAngleError(false);
+      }, 400);
     }
 
     setAngle(parseInt(angle).toString());
@@ -360,6 +404,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
             inputProps={{
               onKeyUp: (e) => handleKeyUp(e, "i"),
               ...(iOS() ? {} : { inputMode: "decimal" }),
+              className: errors[0] ? Styles.error : "",
             }}
             size="small"
             value={axis[0]}
@@ -382,6 +427,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
             inputProps={{
               onKeyUp: (e) => handleKeyUp(e, "j"),
               ...(iOS() ? {} : { inputMode: "decimal" }),
+              className: errors[1] ? Styles.error : "",
             }}
             size="small"
             value={axis[1]}
@@ -404,6 +450,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
             inputProps={{
               onKeyUp: (e) => handleKeyUp(e, "k"),
               ...(iOS() ? {} : { inputMode: "decimal" }),
+              className: errors[2] ? Styles.error : "",
             }}
             size="small"
             value={axis[2]}
@@ -429,6 +476,7 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
           inputProps={{
             onKeyUp: (e) => handleKeyUp(e, "angle"),
             ...(iOS() ? {} : { inputMode: "decimal" }),
+            className: angleError ? Styles.error : "",
           }}
           size="small"
           value={angle}

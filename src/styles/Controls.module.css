@@ -114,3 +114,7 @@
 .sub-label {
   color: rgba(255, 255, 255, 0.5);
 }
+
+.error {
+  color: rgb(244, 67, 54) !important;
+}
