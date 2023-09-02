@@ -132,6 +132,17 @@ function createQuaternion(axis: [string, string, string], angle: string) {
   return quaternion;
 }
 
+// Source: https://stackoverflow.com/a/9039885
+function iOS() {
+  return (
+    ["iPad Simulator", "iPhone Simulator", "iPod Simulator", "iPad", "iPhone", "iPod"].includes(
+      navigator.platform
+    ) ||
+    // iPad on iOS 13 detection
+    (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+  );
+}
+
 type BasisVector = "i" | "j" | "k";
 
 interface ControlsProps {
@@ -345,7 +356,10 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
               </InputAdornment>
             ),
           }}
-          inputProps={{ inputMode: "decimal", onKeyUp: (e) => handleKeyUp(e, "i") }}
+          inputProps={{
+            onKeyUp: (e) => handleKeyUp(e, "i"),
+            ...(iOS() ? {} : { inputMode: "decimal" }),
+          }}
           size="small"
           value={axis[0]}
           onChange={(e) => handleChange("i", e.target.value)}
@@ -364,7 +378,10 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
               </InputAdornment>
             ),
           }}
-          inputProps={{ inputMode: "decimal", onKeyUp: (e) => handleKeyUp(e, "j") }}
+          inputProps={{
+            onKeyUp: (e) => handleKeyUp(e, "j"),
+            ...(iOS() ? {} : { inputMode: "decimal" }),
+          }}
           size="small"
           value={axis[1]}
           onChange={(e) => handleChange("j", e.target.value)}
@@ -383,7 +400,10 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
               </InputAdornment>
             ),
           }}
-          inputProps={{ inputMode: "decimal", onKeyUp: (e) => handleKeyUp(e, "k") }}
+          inputProps={{
+            onKeyUp: (e) => handleKeyUp(e, "k"),
+            ...(iOS() ? {} : { inputMode: "decimal" }),
+          }}
           size="small"
           value={axis[2]}
           onChange={(e) => handleChange("k", e.target.value)}
@@ -405,7 +425,10 @@ function Controls({ onDirectionChange, onQuaternionChange }: ControlsProps) {
             </InputAdornment>
           ),
         }}
-        inputProps={{ inputMode: "decimal", onKeyUp: (e) => handleKeyUp(e, "angle") }}
+        inputProps={{
+          onKeyUp: (e) => handleKeyUp(e, "angle"),
+          ...(iOS() ? {} : { inputMode: "decimal" }),
+        }}
         size="small"
         value={angle}
         onChange={handleAngleChange}
